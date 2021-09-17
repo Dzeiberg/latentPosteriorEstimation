@@ -11,8 +11,7 @@ import scipy.stats as ss
 # Cell
 class MSGMM:
     def __init__(self):
-        self.wiL = np.random.beta(5,2,size=(xPos.shape[0]))
-        self.wiU = np.random.beta(2,5,size=(xUnlabeled.shape[0]))
+        pass
     def updateAlpha(self):
         self.alpha = np.mean(self.wiU)
 
@@ -39,6 +38,8 @@ class MSGMM:
         self.sigma0 = (s1 + s2) / (np.sum(1 - self.wiU) + np.sum(1-self.wiL))
 
     def fit(self, xUnlabeled, xPos,verbose=True,iterations=100):
+        self.wiL = np.random.beta(5,2,size=(xPos.shape[0]))
+        self.wiU = np.random.beta(2,5,size=(xUnlabeled.shape[0]))
         for iteration in range(iterations):
             # M-Step
             self.updateAlpha()
