@@ -7,6 +7,7 @@ import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
 import scipy.stats as ss
+from tqdm.notebook import tqdm, trange
 
 # Cell
 class MSGMM:
@@ -40,7 +41,7 @@ class MSGMM:
     def fit(self, xUnlabeled, xPos,verbose=True,iterations=100):
         self.wiL = np.random.beta(5,2,size=(xPos.shape[0]))
         self.wiU = np.random.beta(2,5,size=(xUnlabeled.shape[0]))
-        for iteration in range(iterations):
+        for iteration in trange(iterations):
             # M-Step
             self.updateAlpha()
             self.updateBeta()
